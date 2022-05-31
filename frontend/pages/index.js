@@ -33,7 +33,7 @@ const index = ({ data }) => {
   if (loading) return null
   return (
     <>
-      <div className="h2">Students</div>
+      <div className="h2">Students{process.env.NEXT_PUBLIC_AUTH_SECRET}</div>
       <hr />
       <br />
       <br />

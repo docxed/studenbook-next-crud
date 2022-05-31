@@ -17,7 +17,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 const corsOptions = {
-  origin: process.env.NODE_ENV === "production" ? ["http://localhost"] : true,
+  origin:
+    process.env.NODE_ENV === "production"
+      ? ["https://studentbook-next-crud.vercel.app", "http://localhost"]
+      : true,
   credentials: true,
 }
 app.use(cors(corsOptions))

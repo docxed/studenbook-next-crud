@@ -5,14 +5,14 @@ export async function middleware(req, res, next) {
   const session = await getToken({ req, secret: process.env.NEXT_PUBLIC_AUTH_SECRET })
   const url = req.page
   const login = () => {
-    if (!session || !session?.user) {
+    if (!session) {
       let redirectUrl = req.nextUrl.clone()
       redirectUrl.pathname = "/signin"
       return NextResponse.rewrite(redirectUrl)
     }
   }
   const guest = () => {
-    if (session && session?.user) {
+    if (session) {
       let redirectUrl = req.nextUrl.clone()
       redirectUrl.pathname = "/"
       return NextResponse.rewrite(redirectUrl)

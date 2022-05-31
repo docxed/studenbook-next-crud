@@ -1,0 +1,25 @@
+name: Code formatting when PR or Push
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "main"
+jobs:
+  format:
+    name: Code formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Format in backend
+        working-directory: ./backend
+        run: |
+          yarn install
+          yarn format
+      - name: Format in frontend
+        working-directory: ./frontend
+        run: |
+          yarn install
+          yarn format

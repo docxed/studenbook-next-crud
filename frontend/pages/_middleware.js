@@ -9,7 +9,7 @@ export async function middleware(req, res, next) {
   const login = () => {
     if (!session) {
       let redirectUrl = req.nextUrl.clone()
-      redirectUrl.pathname = "/signin"
+      redirectUrl.pathname = "/signinq=" + session
       return NextResponse.rewrite(redirectUrl)
     }
   }

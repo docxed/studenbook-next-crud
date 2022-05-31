@@ -4,6 +4,8 @@ import { getToken } from "next-auth/jwt"
 export async function middleware(req, res, next) {
   const session = await getToken({ req, secret: process.env.NEXT_PUBLIC_AUTH_SECRET })
   const url = req.page
+  console.log(req.cookies)
+  console.log(session)
   const login = () => {
     if (!session) {
       let redirectUrl = req.nextUrl.clone()

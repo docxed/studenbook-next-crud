@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from "react"
-import { useSession } from "next-auth/react"
+
 import { useQuery, useMutation } from "@apollo/client"
 import { STUDENTS_QUERY } from "../graphql/studentQuery"
 import { DELETE_STUDENT_MUTATION } from "../graphql/studentMutation"
@@ -7,11 +7,11 @@ import Loading from "../components/Loading"
 import { isAlert } from "../lib/alert"
 import Link from "next/link"
 
-const index = ({ data }) => {
+const index = () => {
   useEffect(() => {
     refetch()
   }, [])
-  const { data: session } = useSession()
+
   const { loading, error, data: resStudents, refetch } = useQuery(STUDENTS_QUERY)
   const [deleteStudent] = useMutation(DELETE_STUDENT_MUTATION)
   const handleDeleteStudent = useCallback((id) => {
@@ -33,7 +33,7 @@ const index = ({ data }) => {
   if (loading) return null
   return (
     <>
-      <div className="h2">Students{process.env.NEXT_PUBLIC_AUTH_SECRET}</div>
+      <div className="h2">Students</div>
       <hr />
       <br />
       <br />

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { getToken } from "next-auth/jwt"
 
 export async function middleware(req, res, next) {
-  const session = await getToken({ req: req, secret: process.env.NEXT_PUBLIC_AUTH_SECRET })
+  const session = await getToken({ req, secret: process.env.NEXT_PUBLIC_AUTH_SECRET })
   const url = req.page
   const login = () => {
     if (!session) {
@@ -22,4 +22,5 @@ export async function middleware(req, res, next) {
   if (url.name === "/signup") return guest()
   if (url.name === "/create") return login()
   if (url.name === "/student/[studentId]") return login()
+  return NextResponse.next()
 }
